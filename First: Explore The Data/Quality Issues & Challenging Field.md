@@ -1,0 +1,23 @@
+### **Data Quality Issues:**
+
+Data quality issues in the dataset are primarily caused by **missing values**, **redundancy**, **duplicates**, and **inconsistencies**. These issues are prevalent across various columns, and addressing them is crucial for meaningful analysis. The dataset exhibits a high number of **missing values**, especially in non-primary key columns, such as `CATEGORY_3`, `CATEGORY_4`, and `MANUFACTURER`, which can result in **inconsistency**. Incomplete data entries negatively affect the overall integrity of the dataset, as computations based on missing data can lead to unreliable results.
+
+To address these issues, Python libraries like `pandas` and `matplotlib` were used to identify and visualize these missing values. The `isnull().sum()` function in pandas helped identify the missing data, and a bar chart was created using `matplotlib` to visualize the extent of missingness. This gave us a clear view of which columns needed attention. Handling **redundancy** was another issue, where similar values were entered multiple times, especially in columns such as `CATEGORY_2` and `BRAND`. This redundancy can skew analysis results, so it’s important to clean these entries.
+
+**Duplicates** were checked using `df.duplicated()` based on primary keys like `ID` for users and `BARCODE` for products. The presence of duplicate records in the dataset can distort analysis by inflating the true count of unique values. Removing duplicates helps reduce noise in the data. In the case of the `TRANSACTION_TAKEHOME.csv`, duplicates were checked using the combination of `RECEIPT_ID` and `BARCODE`, ensuring that each transaction was unique. 
+
+To handle **inconsistencies**, missing values in non-primary columns were filled with "Unknown" using pandas’ `fillna()` function. This simple method allows the dataset to maintain consistency, making it more reliable for further processing.
+
+---
+
+### **Challenging Fields:**
+
+Several fields in the dataset present significant challenges due to **inconsistency**, **redundancy**, and **ambiguity**. Fields like `CATEGORY_3` and `CATEGORY_4` have multiple missing values, making it difficult to interpret and categorize the products accurately. These missing values cause the dataset to be incomplete and ambiguous, and performing any meaningful analysis would be problematic without addressing these gaps. For instance, the `MANUFACTURER` field contains several missing entries that may represent a lack of information or data entry errors. Inconsistencies across these columns create hurdles in identifying trends or performing statistical analysis, as the missing data introduces noise that distorts the true representation of the dataset.
+
+Python’s `pandas` library was used to detect these **missing values** using the `isnull().sum()` method. Once missing data was identified, the function `fillna()` was used to replace NaN values with the term "Unknown" to create a placeholder for missing information. While this solution prevents analysis failures due to missing data, it introduces potential bias. Moreover, using placeholders like "Unknown" without clear definitions may confuse later analysis, especially if it isn't handled with care.
+
+Furthermore, the dataset exhibits **redundancy** in product categories, such as `CATEGORY_2`, where values like `Snacks` and `Jerky & Dried Meat` are repeated across different rows. This redundancy can make it hard to evaluate the unique attributes of a product. Additionally, **duplicate records** across fields like `BARCODE` and `RECEIPT_ID` in `TRANSACTION_TAKEHOME.csv` further complicate the dataset’s usability.
+
+Using `df.duplicated(subset=...)` allowed us to isolate **duplicate records** and evaluate them based on specific columns. In this case, duplicates were detected in the `BARCODE` column in `products.csv` and across `RECEIPT_ID` and `BARCODE` in `transactions.csv`. Handling duplicates efficiently ensures that no skewed data is used in analysis, thus preserving the accuracy of any insights drawn from it.
+
+In summary, the combination of **missing values**, **redundancy**, **duplicates**, and **inconsistencies** creates challenges in understanding and analyzing the data accurately. Python functions like `isnull()`, `fillna()`, `duplicated()`, and data visualization techniques using `matplotlib` are essential in identifying, understanding, and addressing these data quality issues.
