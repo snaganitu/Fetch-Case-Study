@@ -16,25 +16,6 @@ ORDER BY Total_Quantity DESC
 LIMIT 5;
 ```
 
-```markdown
-## SQL Query: Top 5 Brands by Total Quantity Purchased (Users 21 and Over)
-
-### Query:
-```sql
-SELECT UPPER(TRIM(p.BRAND)) AS Standard_Brand, SUM(CAST(t.FINAL_QUANTITY AS INTEGER)) AS Total_Quantity 
-FROM USERS u 
-JOIN TRANSACTIONS t ON u.ID = t.USER_ID 
-JOIN PRODUCTS p ON t.BARCODE = p.BARCODE 
-WHERE (JULIANDAY('now') - JULIANDAY(SUBSTR(u.BIRTH_DATE,1,10)))/365.25 >= 21 
-  AND t.FINAL_QUANTITY IS NOT NULL 
-  AND LOWER(t.FINAL_QUANTITY) NOT IN ('0','zero') 
-  AND p.BRAND IS NOT NULL 
-  AND TRIM(p.BRAND) != '' 
-GROUP BY Standard_Brand 
-ORDER BY Total_Quantity DESC 
-LIMIT 5;
-```
-
 This query calculates the total purchased quantity for each brand (after cleaning and standardizing brand names) and returns the top 5 brands, but only for users aged 21 or older.
 # Query Breakdown:
 
