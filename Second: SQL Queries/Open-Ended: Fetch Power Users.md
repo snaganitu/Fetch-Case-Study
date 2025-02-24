@@ -62,3 +62,8 @@ USER_ID                                 | Number_of_Transactions
 - The query helps identify **power users**, or the most active users, by counting their transactions.
 - By sorting in descending order, the most active users are displayed at the top of the list.
 - The output shows the `USER_ID` along with their respective **transaction count**, allowing for an analysis of the top users based on engagement.
+
+### Key Assumptions for Each Query:
+- Power users: Defined by the number of transactions, but you can also use total spending or frequency of purchases.
+- Leading brand in Dips & Salsa: Based on total sales, but you could also use the number of units sold.
+- Year-over-year growth: Based on total sales, but you could also measure transaction volume or other metrics.
